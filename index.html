@@ -232,11 +232,10 @@ const TODO = [
  "出發前再確認點燈與市集開放時間"
 ];
 
-let plan = "B", day = 0, filter = "all";
-try{ plan = localStorage.getItem("tk-plan") || "B"; }catch(e){}
+let plan = "A", day = 0, filter = "all";
+try{ plan = localStorage.getItem("tk-plan") || "A"; }catch(e){}
 
 function renderHotels(){
-  document.querySelectorAll("#planToggle button").forEach(b=>b.classList.toggle("on",b.dataset.plan===plan));
   document.getElementById("hotels").innerHTML = PLAN_HOTELS[plan].map(([k,nights])=>{
     const h = HOTELS[k];
     return `<div class="hotel ${k==='dormy'?'dormy':''}">
@@ -248,9 +247,7 @@ function renderHotels(){
       <div class="price">${h.price}</div>
       <a class="map" href="${gm(h.q)}" target="_blank" rel="noopener">在 Google 地圖查看 ↗</a>
     </div>`;
-  }).join("") + (plan==="B"
-    ? `<div class="note" style="grid-column:1/-1">為什麼推薦 2 間：前 2 天住澀谷，原宿、表參道逛街最順；後 2 天換到銀座 Dormy Inn，六本木點燈、築地、淺草、回程機場都有直達線，最後兩晚也能好好泡湯。只在 12/23 上午換一次飯店。</div>`
-    : `<div class="note" style="grid-column:1/-1">1 間到底：不用拖行李換飯店、每晚都能泡溫泉；代價是 12/22 去澀谷、原宿單程多花約 25 分鐘。</div>`);
+  }).join("");
 }
 
 function visibleStops(dd){ return dd.stops.filter(s=>!s.plan||s.plan===plan); }
@@ -300,11 +297,6 @@ function renderTodo(){
     `<li><input type="checkbox" id="td${i}" data-i="${i}" ${done[i]?'checked':''}><label for="td${i}">${t}</label></li>`).join("");
 }
 
-document.getElementById("planToggle").addEventListener("click",e=>{
-  const b=e.target.closest("button"); if(!b) return;
-  plan=b.dataset.plan; try{localStorage.setItem("tk-plan",plan)}catch(e){}
-  renderHotels(); renderStats(); renderDays();
-});
 document.getElementById("days").addEventListener("click",e=>{
   const b=e.target.closest("button"); if(!b) return; day=+b.dataset.i; renderDays();
 });
