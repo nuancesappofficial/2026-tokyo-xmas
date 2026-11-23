@@ -119,11 +119,6 @@ footer{max-width:980px;margin:0 auto 40px;padding:0 16px;font-size:12px;color:va
 <main>
 
   <section class="panel">
-    <h2>住宿</h2>
-    <div class="hotels" id="hotels"></div>
-  </section>
-
-  <section class="panel">
     <h2>每日行程</h2>
     <div class="days" id="days"></div>
     <div id="dayView"></div>
@@ -321,7 +316,7 @@ document.getElementById("todo").addEventListener("change",e=>{
   s.innerHTML=h;
 })();
 
-renderHotels(); renderDays(); renderTodo();
+renderDays(); renderTodo();
 </script>
 </body>
 </html>
