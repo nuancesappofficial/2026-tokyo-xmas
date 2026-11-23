@@ -118,12 +118,8 @@ footer{max-width:980px;margin:0 auto 40px;padding:0 16px;font-size:12px;color:va
 <main>
 
   <section class="panel">
-    <h2>住宿方案</h2>
-    <p class="sub">兩案都包含 Dormy Inn 天然溫泉。切換方案後，下方每日行程的交通與住宿會跟著變。</p>
-    <div class="toggle" id="planToggle">
-      <button data-plan="B" class="on">推薦：2 間（澀谷 → 銀座）</button>
-      <button data-plan="A">1 間到底（銀座 4 晚）</button>
-    </div>
+    <h2>住宿</h2>
+    <p class="sub">全程 4 晚入住 Dormy Inn Tokyo Hatchobori，享受天然溫泉和免費夜鳴蕎麥麵。</p>
     <div class="hotels" id="hotels"></div>
   </section>
 
@@ -173,31 +169,27 @@ const HOTELS = {
     q:"SHIBUYA STREAM HOTEL"
   },
   dormy:{
-    name:"天然溫泉 七寶之湯 Dormy Inn PREMIUM 銀座",
-    alt:"（天然温泉 七宝の湯 ドーミーインPREMIUM銀座）",
-    tags:[["天然黑湯溫泉","g"],["免費夜鳴拉麵","o"]],
-    points:["東京少見的「黑湯」天然溫泉大浴場＋高溫三溫暖","日比谷線 東銀座站步行約 4 分：到六本木直達約 10 分、到築地 1 站","都營淺草線直達淺草；回程可搭京成 Access 特急往成田（部分班次需轉車）","晚上有免費夜鳴蕎麥麵、湯後冰棒"],
-    price:"參考：單人雙人床每晚約 ¥28,000–33,000（12 月聖誕檔期可能更高）",
-    q:"天然温泉 七宝の湯 ドーミーインPREMIUM銀座"
+    name:"Dormy Inn Tokyo Hatchobori - Natural Hot Spring",
+    alt:"（八丁堀天然溫泉）",
+    tags:[["天然溫泉","g"],["免費夜鳴拉麵","o"]],
+    points:["天然溫泉大浴場＋高溫三溫暖","銀座線八丁堀站附近，日本橋方向：到築地超近、到銀座 1 站、到六本木銀座線轉乘","淺草線淺草直達；回程京成 Access 特急往成田","晚上有免費夜鳴蕎麥麵"],
+    price:"2 人 1 室每晚約 TWD 16,125（已訂位 4 晚）",
+    q:"Dormy Inn Tokyo Hatchobori"
   }
 };
 const PLAN_HOTELS = {
-  B:[["shibuya","12/21 – 12/23 · 2 晚"],["dormy","12/23 – 12/25 · 2 晚"]],
   A:[["dormy","12/21 – 12/25 · 4 晚"]]
 };
 
 /* plan: "A" / "B" → only shown in that plan; omitted → both */
 const DAYS = [
- {d:"12/21",w:"一",title:"抵達東京",area:"成田 → 住宿",sleep:{A:"Dormy Inn 銀座",B:"SHIBUYA STREAM HOTEL"},stops:[
+ {d:"12/21",w:"一",title:"抵達東京",area:"成田 → 八丁堀 Dormy Inn",sleep:"Dormy Inn Tokyo Hatchobori",stops:[
   {t:"19:20",c:"move",n:"抵達成田機場 第1航廈",p:"入境＋領行李預估 40–60 分。先在機場買好 Suica／PASMO 或設定手機 Suica。"},
-  {t:"20:30",c:"move",plan:"B",n:"成田特快 N'EX → 澀谷",p:"約 80–90 分直達，不用轉車。建議買 N'EX 外國旅客來回優惠票（回程方案 B 改走淺草線則買單程）。"},
-  {t:"20:30",c:"move",plan:"A",n:"京成 Access 特急 → 東銀座",p:"直通都營淺草線，約 75–90 分到東銀座；部分班次需在青砥或押上轉車。"},
-  {t:"22:00",c:"stay",plan:"B",n:"入住 SHIBUYA STREAM HOTEL",q:"SHIBUYA STREAM HOTEL"},
-  {t:"22:00",c:"stay",plan:"A",n:"入住 Dormy Inn PREMIUM 銀座",p:"先泡黑湯溫泉洗去飛行疲勞，再吃免費夜鳴蕎麥麵當宵夜。",q:"ドーミーインPREMIUM銀座"},
-  {t:"22:30",c:"food",plan:"B",n:"宵夜：澀谷橫丁（MIYASHITA PARK 1F）",p:"日本各地鄉土料理小店一字排開，開到很晚，第一晚隨意吃喝最適合。",q:"渋谷横丁"},
+  {t:"20:30",c:"move",n:"京成 Access 特急 → 八丁堀",p:"直通都營淺草線，約 75–90 分到八丁堀站；部分班次需在青砥或押上轉車。"},
+  {t:"22:00",c:"stay",n:"入住 Dormy Inn Tokyo Hatchobori",p:"先泡天然溫泉洗去飛行疲勞，再吃免費夜鳴蕎麥麵當宵夜。",q:"Dormy Inn Tokyo Hatchobori"},
  ]},
- {d:"12/22",w:"二",title:"原宿・表參道・澀谷 逛吃日",area:"原宿 / 表參道 / 澀谷",sleep:{A:"Dormy Inn 銀座",B:"SHIBUYA STREAM HOTEL"},stops:[
-  {t:"09:30",c:"move",plan:"A",n:"東銀座 → 原宿",p:"日比谷線＋千代田線或銀座線轉車，約 25 分。"},
+ {d:"12/22",w:"二",title:"原宿・表參道・澀谷 逛吃日",area:"原宿 / 表參道 / 澀谷",sleep:"Dormy Inn Tokyo Hatchobori",stops:[
+  {t:"09:30",c:"move",n:"八丁堀 → 原宿",p:"日比谷線直達，約 20 分。"},
   {t:"10:00",c:"shop",n:"竹下通",p:"可麗餅、棉花糖、古著與雜貨，平日上午人較少。",q:"竹下通り"},
   {t:"11:30",c:"food",n:"午餐：表參道 炸豬排或燒肉丼",p:"表參道巷弄名店多，例如「まい泉 青山本店」炸豬排（建議開門前到）。",q:"とんかつ まい泉 青山本店"},
   {t:"13:00",c:"shop",n:"表參道 ～ 裏原宿",p:"表參道之丘、精品旗艦店、Cat Street 選物店一路逛下來，順路走到澀谷。",q:"キャットストリート 原宿"},
@@ -206,19 +198,19 @@ const DAYS = [
   {t:"17:45",c:"food",hl:true,n:"晚餐：Peter Luger 牛排館",p:"澀谷區惠比壽的頂級牛排館，17:45 訂位已確認。預留 ¥10,000+ / 人。",q:"Peter Luger 牛排館 東京"},
   {t:"19:30",c:"shop",n:"MEGA 唐吉訶德 澀谷本店",p:"藥妝、零食伴手禮一次掃，24 小時營業，記得帶護照退稅。",q:"MEGAドン・キホーテ 渋谷本店"},
  ]},
- {d:"12/23",w:"三",title:"築地・銀座 ＋ 六本木聖誕點燈",area:"築地 / 銀座 / 六本木",star:true,sleep:{A:"Dormy Inn 銀座",B:"Dormy Inn 銀座"},stops:[
-  {t:"09:30",c:"move",plan:"B",n:"退房 → 銀座線直達銀座，寄放行李",p:"澀谷→銀座約 16 分，先把行李寄放在 Dormy Inn 再出發。"},
+ {d:"12/23",w:"三",title:"築地・銀座 ＋ 六本木聖誕點燈",area:"築地 / 銀座 / 六本木",star:true,sleep:"Dormy Inn Tokyo Hatchobori",stops:[
+  {t:"09:30",c:"move",n:"八丁堀 Dormy Inn 出發 → 築地",p:"銀座線直達築地，約 5 分。"},
   {t:"10:30",c:"food",n:"築地場外市場 食べ歩き",p:"玉子燒、海膽、鮪魚丼、炙燒干貝，邊走邊吃當早午餐。上午最熱鬧，中午後陸續收攤。",q:"築地場外市場"},
   {t:"13:00",c:"shop",n:"銀座購物",p:"GINZA SIX、UNIQLO 銀座旗艦店、伊東屋文具、無印良品銀座；三越 B2 地下美食街買甜點。",q:"GINZA SIX"},
-  {t:"15:30",c:"stay",n:"Dormy Inn 入住，泡湯小歇",p:"晚上要在戶外站比較久，先回飯店暖身、加件衣服。",q:"ドーミーインPREMIUM銀座"},
-  {t:"16:45",c:"move",n:"日比谷線 東銀座 → 六本木",p:"直達約 10 分，1C 出口直通六本木之丘。"},
+  {t:"15:30",c:"stay",n:"Dormy Inn 回飯店，泡湯小歇",p:"晚上要在戶外站比較久，先回飯店暖身、加件衣服。",q:"Dormy Inn Tokyo Hatchobori"},
+  {t:"16:45",c:"move",n:"銀座線 八丁堀 → 六本木",p:"轉乘日比谷線，約 15 分，1C 出口直通六本木之丘。"},
   {t:"17:00",c:"sight",hl:true,n:"🎄 けやき坂 聖誕點燈",p:"約 400m 的櫸木坂道被藍白 LED 包圍，盡頭是東京鐵塔。17:00 點燈瞬間最值得拍。",tip:"📸 拍照點：坂道上方蔦屋書店附近、下方 EMPORIO ARMANI 附近都能拍到整條燈道＋東京鐵塔。",q:"六本木けやき坂通り"},
   {t:"18:00",c:"food",hl:true,n:"六本木之丘 德國聖誕市集（大屋根廣場）",p:"熱紅酒、德國香腸、椒鹽卷餅當晚餐；Käthe Wohlfahrt 的聖誕裝飾很適合買伴手禮。",q:"六本木ヒルズ 大屋根プラザ"},
   {t:"19:30",c:"shop",n:"六本木之丘 West Walk / 66 廣場",p:"聖誕樹與 66 廣場彩色燈飾，館內店鋪逛到打烊。",q:"六本木ヒルズ ウェストウォーク"},
   {t:"21:30",c:"food",n:"回飯店：溫泉＋夜鳴蕎麥麵",p:"Dormy Inn 招牌免費宵夜拉麵，泡完黑湯剛好。"},
  ]},
- {d:"12/24",w:"四",title:"聖誕夜：淺草・上野・秋葉原",area:"淺草 / 上野 / 秋葉原 / 有樂町",sleep:{A:"Dormy Inn 銀座",B:"Dormy Inn 銀座"},stops:[
-  {t:"09:00",c:"move",n:"都營淺草線 東銀座 → 淺草",p:"直達約 15 分，不用轉車。"},
+ {d:"12/24",w:"四",title:"聖誕夜：淺草・上野・秋葉原",area:"淺草 / 上野 / 秋葉原 / 有樂町",sleep:"Dormy Inn Tokyo Hatchobori",stops:[
+  {t:"09:00",c:"move",n:"都營淺草線 八丁堀 → 淺草",p:"直達約 10 分，不用轉車。"},
   {t:"09:30",c:"food",n:"淺草 仲見世通 吃吃逛逛",p:"人形燒、炸饅頭、菠蘿麵包、抹茶甜點；雷門與淺草寺順路拍照即可。",q:"仲見世通り"},
   {t:"11:30",c:"food",n:"午餐：淺草 天丼 或 壽喜燒",p:"淺草是老字號天丼、壽喜燒的大本營，聖誕前夕中午也要排隊，可先查候位。",q:"浅草 天丼"},
   {t:"13:00",c:"shop",n:"上野 阿美橫町",p:"乾貨、零食、藥妝、運動用品，比價好地方；水果串、海鮮小吃邊走邊吃。",q:"アメ横商店街"},
